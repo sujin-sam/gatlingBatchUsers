@@ -7,7 +7,7 @@ class basicSimulation extends Simulation{
         .baseUrl("https://reqres.in")
 
     val userRecords = csv("userList.csv").readRecords
-    val allocateCount = 5
+    val allocateCount = 5 // this number denotes the number of data allocated to each user
 
     val scn = scenario("basic")
         .exec(session => session.set("feedCount", 0))
