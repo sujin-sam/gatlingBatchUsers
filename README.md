@@ -1,7 +1,9 @@
 # What is this
-A sample repo to show how to implement allocate x amount of data to Vusers, this is similar to option "Allocate Users block" in LoadRunner
+A Repo that has the following snippets
+- Allocate X amount of data to each user
+
 
 ## Run
 ```bash
-mvn clean gatling:test
+mvn clean gatling:test -Dgatling.simulationClass={pckgName}.{simulationName}
 ```

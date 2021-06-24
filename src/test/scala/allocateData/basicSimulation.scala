@@ -1,12 +1,15 @@
+package allocateData
+
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import java.util.concurrent.ThreadLocalRandom
+
 class basicSimulation extends Simulation{
 
     val httpProtocol = http
         .baseUrl("https://reqres.in")
 
-    val userRecords = csv("userList.csv").readRecords
+    val userRecords = csv("data/userList.csv").readRecords
     val allocateCount = 5 // this number denotes the number of data allocated to each user
     val isCircular = true // true -> if the data should be cycled at EOF, and turn isRandom to false if you need queue or circular
     val isRandom = true // true -> pick random values from the allocated range. If this is true, then isCircular is ignored
@@ -33,10 +36,10 @@ class basicSimulation extends Simulation{
                 }
                 
         })
-        .exec(session=>{
-            println("vuser: " + session.userId + ", data: " + session("p_user").as[String])
-            session
-        })
+        // .exec(session=>{
+        //     println("vuser: " + session.userId + ", data: " + session("p_user").as[String])
+        //     session
+        // })
         .exitHereIfFailed
     }
 
