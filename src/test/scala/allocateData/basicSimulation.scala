@@ -17,8 +17,9 @@ class basicSimulation extends Simulation{
     def dataController() = {
         exec(session => {
                 if(isRandom == true){
-                    session
-                    .set("p_user", userRecords(ThreadLocalRandom.current().nextInt(((session.userId).toInt * allocateCount) - allocateCount, ((session.userId).toInt * allocateCount))).get("p_user").get)
+                    var randNum = ThreadLocalRandom.current().nextInt(((session.userId).toInt * allocateCount) - allocateCount, ((session.userId).toInt * allocateCount))
+                    session //need an alternative, creating variable at each iteration will increase the memory usage at high loads
+                    .set("p_user", userRecords(randNum).get("p_user").get)
                 }
                 else{
                     if(session("feedCount").as[Int] == allocateCount){
